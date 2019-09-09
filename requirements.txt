@@ -1,5 +1,5 @@
-flask
-flask_api
-gpiozero
-configparser
+flask==1.1.1
+Flask-Api==1.1
+gpiozero==1.5.1
 python-crontab==2.3.8
+gunicorn==19.9.0
