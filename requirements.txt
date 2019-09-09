@@ -2,3 +2,4 @@ flask
 flask_api
 gpiozero
 configparser
+python-crontab==2.3.8
