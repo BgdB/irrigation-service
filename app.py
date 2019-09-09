@@ -1,8 +1,5 @@
 import json
 
-import click
-import time
-
 from flask import request, Flask
 from flask_api import exceptions
 
@@ -26,7 +23,7 @@ def zone_off(zone_id):
     if not int(zone_id) in ACTIVE_ZONES:
         raise exceptions.NotFound()
 
-    DEVICES[int(zone_id)].on()
+    DEVICES[int(zone_id)].off()
     return {'message': f'Zone {zone_id} is off.'}
 
 
@@ -50,23 +47,6 @@ def schedule(zone_id):
         remove_zone_crontab(zone_id)
 
         return {'message': f'Zone {zone_id} program is deleted.'}
-
-
-@app.cli.command('run-zone')
-@click.argument("zone_id")
-@click.argument("duration")
-def execute_program(zone_id, duration):
-    if not int(zone_id) in ACTIVE_ZONES:
-        raise exceptions.NotFound()
-
-    print(f'{zone_id} is on')
-    DEVICES[int(zone_id)].on()
-    time.sleep(int(duration))
-    DEVICES[int(zone_id)].off()
-
-    print(f'{zone_id} is off')
-
-    return {'message': f'Zone {zone_id} was running for {duration} seconds.'}
 
 
 if __name__ == '__main__':

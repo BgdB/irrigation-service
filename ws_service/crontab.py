@@ -1,9 +1,7 @@
-from . import USER
-
 from crontab import CronTab
 
 cron = CronTab(user=True)
-CRONTAB_COMAND = 'flask run-zone'
+CRONTAB_COMAND = '/home/pi/sites/irrigation-service/run-zone.sh'
 
 
 def get_zone_crontab(zone):
